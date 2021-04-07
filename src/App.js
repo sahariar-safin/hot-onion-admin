@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import Login from './componante/Login/Login';
+import Home from './componante/Home/Home';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login></Login>
+        </Route>
+        <Route path="/">
+          <Home></Home>
         </Route>
       </Switch>
     </Router>
