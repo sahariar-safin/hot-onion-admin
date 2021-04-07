@@ -1,0 +1,134 @@
+.addDish body {
+    background: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.addDish .signIn-btn {
+    padding: 4% 29%;
+    border: 1px solid;
+    border-radius: 40px;
+}
+
+form {
+max-width: 500px;
+margin: 0 auto;
+}
+
+.addDish h1 {
+font-weight: 100;
+color: black;
+text-align: center;
+padding-bottom: 10px;
+border-bottom: 1px solid rgb(79, 98, 148);
+}
+
+.addDish .form {
+background: white;
+max-width: 400px;
+margin: 0 auto;
+}
+
+.addDish p {
+color: #bf1650;
+}
+
+p::before {
+display: inline;
+content: "⚠ ";
+}
+
+.addDish input {
+display: block;
+box-sizing: border-box;
+width: 100%;
+border-radius: 4px;
+border: 1px solid black;
+padding: 10px 15px;
+margin-bottom: 10px;
+font-size: 14px;
+}
+
+.addDish label {
+line-height: 2;
+text-align: left;
+display: block;
+margin-bottom: 13px;
+margin-top: 20px;
+color: black;
+font-size: 14px;
+font-weight: 200;
+}
+
+.addDish button[type="submit"],
+.addDish input[type="submit"] {
+background: #ec5990;
+color: white;
+text-transform: uppercase;
+border: none;
+margin-top: 40px;
+padding: 20px;
+font-size: 16px;
+font-weight: 100;
+letter-spacing: 10px;
+}
+
+.addDish button[type="submit"]:hover,
+.addDish input[type="submit"]:hover {
+background: #bf1650;
+}
+
+.addDish button[type="submit"]:active,
+.addDish input[type="button"]:active,
+.addDish input[type="submit"]:active {
+transition: 0.3s all;
+transform: translateY(3px);
+border: 1px solid transparent;
+opacity: 0.8;
+}
+
+.addDish input:disabled {
+opacity: 0.4;
+}
+
+.addDish input[type="button"]:hover {
+transition: 0.3s all;
+}
+
+.addDish button[type="submit"],
+.addDish input[type="button"],
+.addDish input[type="submit"] {
+-webkit-appearance: none;
+}
+
+.addDish .App {
+max-width: 600px;
+margin: 0 auto;
+}
+
+.addDish button[type="button"] {
+display: block;
+appearance: none;
+background: #333;
+color: white;
+border: none;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 4px;
+}
+
+.addDish hr {
+margin-top: 30px;
+}
+
+.addDish button {
+display: block;
+appearance: none;
+margin-top: 40px;
+border: 1px solid #333;
+margin-bottom: 20px;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 4px;
+}

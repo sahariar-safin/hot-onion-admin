@@ -20,6 +20,7 @@ import {
     Link
 } from "react-router-dom";
 import AddDish from '../AddDish/AddDish';
+import ManageDish from '../ManageDish/ManageDish';
 
 const drawerWidth = 240;
 
@@ -147,6 +148,9 @@ function Home(props) {
 
                 <Route path="/addDish">
                     <AddDish></AddDish>
+                </Route>
+                <Route path="/manageDish">
+                    <ManageDish></ManageDish>
                 </Route>
             </main>
         </div>

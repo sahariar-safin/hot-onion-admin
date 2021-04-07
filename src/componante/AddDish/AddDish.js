@@ -3,62 +3,92 @@ import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import Input from "@material-ui/core/Input";
 import Select from "react-select";
-
+import './AddDish.css'
+import axios from "axios";
 
 const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" }
+    { value: "Breakfast", label: "Breakfast" },
+    { value: "Lunch", label: "Lunch" },
+    { value: "Dinner", label: "Dinner" }
 ];
 
 const AddDish = () => {
     const { register, handleSubmit, setValue } = useForm();
+    const [imgURL, setImgURL] = useState();
     const onSubmit = (data) => {
-        console.log(data);
+        console.log({ ...data, imgURL });
+        axios.post('http://localhost:5000/addProduct', {
+            ...data, imgURL
+        })
+            .then(function (response) {
+                const url = response.data.data.display_url;
+                setImgURL(url);
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     const [values, setReactSelect] = useState({
         selectedOption: []
     });
 
+    const handleUploadImage = (event) => {
+        document.getElementById("submitBtn").setAttribute("disabled", "");
+        document.getElementById("submitBtn").value = "Uploading Image!"
+        const img = event.target.files[0];
+        const imgData = new FormData();
+        imgData.set("key", "5cc92beddf63f7dc55cb81cb7d04e498")
+        imgData.append('image', img);
+        axios.post('https://api.imgbb.com/1/upload',
+            imgData)
+            .then(function (response) {
+                const url = response.data.data.display_url;
+                setImgURL(url);
+                document.getElementById("submitBtn").removeAttribute("disabled");
+                document.getElementById("submitBtn").value = "Uploaded!"
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     const handleMultiChange = (selectedOption) => {
         const selectedValue = selectedOption.label;
-        setValue("reactSelect", selectedValue);
+        setValue("category", selectedValue);
         setReactSelect({ selectedValue });
     };
+
+
     return (
-        <div className="App">
+        <div className="addDish">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor="Name">Name</label>
-                    <input placeholder="bill" {...register("Name")} />
-                </div>
 
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input placeholder="luo" {...register("description")} />
-                </div>
+                <label htmlFor="Name">Name</label>
+                <input placeholder="Dish Name" {...register("Name")} />
 
-                <div>
-                    <label htmlFor="price">price</label>
-                    <input
-                        placeholder="price"
-                        type="number"
-                        {...register("price")}
-                    />
-                </div>
-                <div>
-                    <lable className="reactSelectLabel">React select</lable>
-                    <Select
-                        className="reactSelect"
-                        name="filters"
-                        placeholder="Filters"
-                        options={options}
-                        onChange={handleMultiChange}
-                        noMulti
-                    />
-                </div>
-                <input type="submit" />
+                <label htmlFor="description">Description</label>
+                <input placeholder="Dish Description" {...register("description")} />
+
+                <label htmlFor="price">price</label>
+                <input
+                    placeholder="price"
+                    type="number"
+                    {...register("price")}
+                />
+
+                <label className="reactSelectLabel">React select</label>
+                <Select
+                    className="reactSelect"
+                    name="category"
+                    placeholder="Category"
+                    options={options}
+                    onChange={handleMultiChange}
+                    noMulti
+                />
+                <label htmlFor="Upload Image">Upload Image</label>
+                <input type="file" placeholder="Upload Image" onChange={handleUploadImage} />
+                <input id="submitBtn" type="submit" />
             </form>
         </div>
     );
