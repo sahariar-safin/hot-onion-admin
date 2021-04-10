@@ -7,7 +7,7 @@ const ManageDish = () => {
     const [products, setProducts] = useState([]);
     const [ID, setId] = useState();
     useEffect(() => {
-        axios.get('http://localhost:5000/productsForManage')
+        axios.get('https://fathomless-bayou-79225.herokuapp.com/productsForManage')
             .then(function (response) {
                 setProducts(response.data);
             })
@@ -21,7 +21,7 @@ const ManageDish = () => {
 
     const handleDelete = (id) => {
         console.log((id).split("'")[1]);
-        axios.delete(`http://localhost:5000/delete?id=${ (id).split("'")[1] }`)
+        axios.delete(`https://fathomless-bayou-79225.herokuapp.com/delete?id=${ (id).split("'")[1] }`)
             .then(function (response) {
                 console.log(response);
             })

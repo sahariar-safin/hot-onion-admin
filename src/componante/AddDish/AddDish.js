@@ -17,7 +17,7 @@ const AddDish = () => {
     const [imgURL, setImgURL] = useState();
     const onSubmit = (data) => {
         console.log({ ...data, imgURL });
-        axios.post('http://localhost:5000/addProduct', {
+        axios.post('https://fathomless-bayou-79225.herokuapp.com/addProduct', {
             ...data, imgURL
         })
             .then(function (response) {
